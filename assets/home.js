@@ -47,7 +47,7 @@
   if (steps[0]) steps[0].classList.add("active");
 
   // dream search: names, then dream texts, then near spellings; never a dead end
-  var q = document.getElementById("q"), list = document.getElementById("results"), data = null, sel = -1;
+  var q = document.getElementById("q"), list = document.getElementById("results"), data = null, pap = [], sel = -1;
   var POPULAR = [["snakes", "Snakes"], ["teeth", "Teeth"], ["water", "Water"], ["flying", "Flying"], ["wedding", "A wedding"]];
   function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
   function stem(w) { return w.replace(/(ies)$/, "y").replace(/(ing|ed|es|s)$/, "") || w; }
@@ -65,10 +65,11 @@
   }
   function load(cb) {
     if (data) return cb();
-    fetch("/assets/data/dreams-en.json?v=2").then(function (r) { return r.json(); }).then(function (d) {
+    fetch("/assets/data/papyrus-keys-en.json?v=1").then(function (r) { return r.json(); }).then(function (k) { pap = k.map(stem); }).catch(function () {});
+    fetch("/assets/data/dreams-en.json?v=3").then(function (r) { return r.json(); }).then(function (d) {
       data = d.map(function (x) {
         var nw = words(x[1] + " " + x[0].replace(/-/g, " "));
-        return { slug: x[0], name: x[1], text: x[2] || "", nw: nw, ns: nw.map(stem), ts: words(x[2] || "").map(stem) };
+        return { slug: x[0], name: x[1], text: x[2] || "", nw: nw, ns: nw.map(stem), ks: words(x[3] || "").map(stem), ts: words(x[2] || "").map(stem) };
       });
       cb();
     }).catch(function () {});
@@ -94,7 +95,8 @@
           else if (orig.length >= 3 && d.nw[i].indexOf(orig) === 0) best = Math.max(best, 80);
           else if (w.length >= 4 && n.length >= 4 && dist(n, w) <= (w.length > 5 ? 2 : 1)) best = Math.max(best, 25);
         });
-        if (best < 80 && d.ts.indexOf(w) >= 0) { best = Math.max(best, 40); if (best === 40) how = "text"; }
+        if (best < 70 && d.ks.indexOf(w) >= 0) best = 70;
+        if (best < 70 && d.ts.indexOf(w) >= 0) { best = Math.max(best, 40); if (best === 40) how = "text"; }
         if (best === 25) near = true;
         sc += best;
       });
@@ -112,6 +114,11 @@
     if (!res.length) {
       h = '<li class="none">Nothing for “' + esc(q.value.trim()) + '” yet. Dreams people often look up:</li>' +
         POPULAR.map(function (p) { return '<li role="option"><a href="/dreams/' + p[0] + '/">' + p[1] + "</a></li>"; }).join("") +
+        '<li><a class="all" href="/dreams/">All 789 dreams from A to Z →</a></li>';
+    }
+    if (qs.some(function (w) { return pap.indexOf(w) >= 0; })) {
+      h = '<li class="pap">𓂀 The pharaohs’ papyrus has a dream about this. You will find it in the Place of Truth app, coming soon to Google Play.</li>' +
+        exact.slice(0, 6).map(function (x) { return '<li role="option"><a href="/dreams/' + x.d.slug + '/">' + esc(x.d.name) + "</a></li>"; }).join("") +
         '<li><a class="all" href="/dreams/">All 789 dreams from A to Z →</a></li>';
     }
     list.innerHTML = h;
