@@ -46,30 +46,75 @@
   steps.forEach(function (s) { sio.observe(s); });
   if (steps[0]) steps[0].classList.add("active");
 
-  // dream search
+  // dream search: names, then dream texts, then near spellings; never a dead end
   var q = document.getElementById("q"), list = document.getElementById("results"), data = null, sel = -1;
-  function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/^(a|an|the)\s+/, ""); }
+  var POPULAR = [["snakes", "Snakes"], ["teeth", "Teeth"], ["water", "Water"], ["flying", "Flying"], ["wedding", "A wedding"]];
+  function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function stem(w) { return w.replace(/(ies)$/, "y").replace(/(ing|ed|es|s)$/, "") || w; }
+  function words(s) { return norm(s).split(/[^a-z0-9']+/).filter(function (w) { return w && !/^(a|an|the|of|to|in|on|and|or|you|your|is|it)$/.test(w); }); }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function dist(a, b) {
+    if (Math.abs(a.length - b.length) > 2) return 9;
+    var p = [], i, j;
+    for (j = 0; j <= b.length; j++) p[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      var prev = p[0]; p[0] = i;
+      for (j = 1; j <= b.length; j++) { var t = p[j]; p[j] = Math.min(p[j] + 1, p[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = t; }
+    }
+    return p[b.length];
+  }
   function load(cb) {
     if (data) return cb();
-    fetch("/assets/data/dreams-en.json").then(function (r) { return r.json(); }).then(function (d) {
-      data = d.map(function (x) { return { slug: x[0], name: x[1], key: norm(x[1]) + " " + x[0].replace(/-/g, " ") }; });
+    fetch("/assets/data/dreams-en.json?v=2").then(function (r) { return r.json(); }).then(function (d) {
+      data = d.map(function (x) {
+        var nw = words(x[1] + " " + x[0].replace(/-/g, " "));
+        return { slug: x[0], name: x[1], text: x[2] || "", nw: nw, ns: nw.map(stem), ts: words(x[2] || "").map(stem) };
+      });
       cb();
     }).catch(function () {});
   }
+  function snippet(text, st) {
+    var re = new RegExp("\\b(" + st.replace(/[^a-z0-9]/g, "") + "[a-z']*)", "i"), m = text.match(re);
+    if (!m) return "";
+    var i = m.index, a = Math.max(0, i - 40), b = Math.min(text.length, i + 70);
+    return (a ? "…" : "") + esc(text.slice(a, i)) + "<b>" + esc(m[0]) + "</b>" + esc(text.slice(i + m[0].length, b)) + (b < text.length ? "…" : "");
+  }
   function render() {
-    var v = norm(q.value.trim());
+    var qw = words(q.value), raw = norm(q.value.trim());
     sel = -1;
-    if (!v) { list.classList.remove("open"); list.innerHTML = ""; return; }
-    var starts = [], has = [];
+    if (!raw) { list.classList.remove("open"); list.innerHTML = ""; return; }
+    var qs = qw.length ? qw.map(stem) : [raw];
+    var scored = [];
     data.forEach(function (d) {
-      var words = d.key.split(/\s+/);
-      if (words.some(function (w) { return w.indexOf(v) === 0; })) starts.push(d);
-      else if (d.key.indexOf(v) >= 0) has.push(d);
+      var sc = 0, how = "name", near = false;
+      qs.forEach(function (w, k) {
+        var orig = qw[k] || w, best = 0;
+        d.ns.forEach(function (n, i) {
+          if (n === w) best = Math.max(best, 100);
+          else if (orig.length >= 3 && d.nw[i].indexOf(orig) === 0) best = Math.max(best, 80);
+          else if (w.length >= 4 && n.length >= 4 && dist(n, w) <= (w.length > 5 ? 2 : 1)) best = Math.max(best, 25);
+        });
+        if (best < 80 && d.ts.indexOf(w) >= 0) { best = Math.max(best, 40); if (best === 40) how = "text"; }
+        if (best === 25) near = true;
+        sc += best;
+      });
+      if (sc > 0) scored.push({ d: d, sc: sc - d.name.length * 0.01, how: how, near: near });
     });
-    var res = starts.concat(has).slice(0, 7);
-    list.innerHTML = res.length
-      ? res.map(function (d) { return '<li role="option"><a href="/dreams/' + d.slug + '/">' + d.name.replace(/</g, "&lt;") + "</a></li>"; }).join("")
-      : '<li class="none">No such dream yet. Open the whole dream book below.</li>';
+    scored.sort(function (a, b) { return b.sc - a.sc; });
+    var exact = scored.filter(function (x) { return !x.near; });
+    var res = (exact.length ? exact : scored).slice(0, 7), h = "";
+    if (res.length && !exact.length) h += '<li class="none">Nothing for “' + esc(q.value.trim()) + '”. Did you mean:</li>';
+    h += res.map(function (x) {
+      var sn = x.how === "text" ? snippet(x.d.text, qs[0]) : "";
+      return '<li role="option"><a href="/dreams/' + x.d.slug + '/">' + esc(x.d.name) + (sn ? '<small>' + sn + "</small>" : "") + "</a></li>";
+    }).join("");
+    if (res.length && !exact.length) h += '<li><a class="all" href="/dreams/">All 789 dreams from A to Z →</a></li>';
+    if (!res.length) {
+      h = '<li class="none">Nothing for “' + esc(q.value.trim()) + '” yet. Dreams people often look up:</li>' +
+        POPULAR.map(function (p) { return '<li role="option"><a href="/dreams/' + p[0] + '/">' + p[1] + "</a></li>"; }).join("") +
+        '<li><a class="all" href="/dreams/">All 789 dreams from A to Z →</a></li>';
+    }
+    list.innerHTML = h;
     list.classList.add("open");
   }
   if (q) {
