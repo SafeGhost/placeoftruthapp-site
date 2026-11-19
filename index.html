@@ -6,6 +6,16 @@
 <title>Place of Truth: Egyptian Oracle, Dream Book and Lucky Days</title>
 <meta name="description" content="An Egyptian temple in your phone: the Oracle’s vision of your day, the pharaohs’ dream book, the priests’ calendar of good and bad days, Oracle Cards of the 36 stars and 24 amulets.">
 <link rel="canonical" href="https://placeoftruthapp.com/">
+<link rel="alternate" hreflang="en" href="https://placeoftruthapp.com/">
+<link rel="alternate" hreflang="ru" href="https://placeoftruthapp.com/ru/">
+<link rel="alternate" hreflang="es" href="https://placeoftruthapp.com/es/">
+<link rel="alternate" hreflang="pt" href="https://placeoftruthapp.com/pt/">
+<link rel="alternate" hreflang="de" href="https://placeoftruthapp.com/de/">
+<link rel="alternate" hreflang="fr" href="https://placeoftruthapp.com/fr/">
+<link rel="alternate" hreflang="it" href="https://placeoftruthapp.com/it/">
+<link rel="alternate" hreflang="tr" href="https://placeoftruthapp.com/tr/">
+<link rel="alternate" hreflang="ja" href="https://placeoftruthapp.com/ja/">
+<link rel="alternate" hreflang="x-default" href="https://placeoftruthapp.com/">
 <meta name="theme-color" content="#0d0a07">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://placeoftruthapp.com/">
@@ -15,12 +25,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cormorant+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=14">
 <link rel="preload" as="image" href="/assets/pot/nile-felucca-wide.jpg" media="(min-width:701px)">
 <link rel="preload" as="image" href="/assets/pot/nile-felucca-tall.jpg" media="(max-width:700px)">
-<link rel="stylesheet" href="/assets/home.css?v=10">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Place of Truth","operatingSystem":"Android","applicationCategory":"LifestyleApplication","description":"An Egyptian oracle, dream book and calendar of lucky days.","url":"https://placeoftruthapp.com/","image":"https://placeoftruthapp.com/assets/icon.png","publisher":{"@type":"Organization","name":"KULIK TRADE CORP."}}</script>
+<link rel="stylesheet" href="/assets/home.css?v=14">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Place of Truth","operatingSystem":"Android","applicationCategory":"LifestyleApplication","description":"The Oracle’s vision of your day, the pharaohs’ dream book and the priests’ calendar of lucky days.","url":"https://placeoftruthapp.com/","inLanguage":"en","image":"https://placeoftruthapp.com/assets/icon.png","publisher":{"@type":"Organization","name":"KULIK TRADE CORP."}}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -30,7 +39,8 @@
   <nav aria-label="Main">
     <a href="#rites">Inside</a>
     <a href="#amulets">Amulets</a>
-    <a href="/dreams/">Dream book</a>
+    <a class="keep" href="/dreams/">Dream book</a>
+    <details class="lang"><summary aria-label="Language">EN</summary><div><a href="/" hreflang="en" lang="en" aria-current="page">English</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a></div></details>
   </nav>
 </header>
 
@@ -94,7 +104,7 @@
         <img class="step-shot" src="/assets/pot/shots/en/4.jpg" alt="The pharaohs’ dream book" loading="lazy" width="540" height="960">
         <span class="num">III</span>
         <h3>The pharaohs’ dream book</h3>
-        <p>Two hundred dreams from a papyrus written about 1275 BC, and hundreds more from the classic dream book of Gustavus Miller. If a dream was bad, do what the Egyptians did: draw a protective sign and cover it with sand.</p>
+        <p>Two hundred Egyptian dreams, some taken straight from a papyrus written about 1275 BC, and 789 more from the classic dream book of Gustavus Miller. If a dream was bad, do what the Egyptians did: draw a protective sign and cover it with sand.</p>
       </li>
       <li class="step" data-i="3">
         <img class="step-shot" src="/assets/pot/shots/en/5.jpg" alt="The priests’ calendar of good and bad days" loading="lazy" width="540" height="960">
@@ -127,7 +137,7 @@
         <button role="tab" aria-selected="false" data-model="scarab">Scarab</button>
         <button role="tab" aria-selected="false" data-model="ankh">Ankh</button>
       </div>
-      <p class="amulet-note" id="amuletNote">Everyone wore it, from children to pharaohs, against illness and the evil eye. It was painted on the bows of boats so that the boat could “see” its way.</p>
+      <p class="amulet-note" id="amuletNote">Everyone wore it, from children to pharaohs, against illness and the evil eye. It was put on children and taken on journeys, and painted on the bows of boats so that the boat could &quot;see&quot; its way.</p>
     </div>
   </div>
 </section>
@@ -143,9 +153,7 @@
       <input id="q" name="q" type="search" placeholder="I dreamed of…" aria-autocomplete="list" aria-controls="results">
       <ul id="results" role="listbox"></ul>
     </form>
-    <p class="chips reveal d3">
-      <a href="/dreams/snakes/">Snakes</a><a href="/dreams/teeth/">Teeth</a><a href="/dreams/water/">Water</a><a href="/dreams/wedding/">Wedding</a><a href="/dreams/flying/">Flying</a><a href="/dreams/dog/">Dog</a>
-    </p>
+    <p class="chips reveal d3"><a href="/dreams/snakes/">Snakes</a><a href="/dreams/teeth/">Teeth</a><a href="/dreams/water/">Water</a><a href="/dreams/wedding/">wedding</a><a href="/dreams/flying/">Flying</a><a href="/dreams/dog/">dog</a></p>
     <a class="more" href="/dreams/">Open the whole dream book →</a>
   </div>
 </section>
@@ -194,12 +202,14 @@
 <footer class="foot">
   <nav aria-label="Footer"><a href="/dreams/">Dream book</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy Policy</a></nav>
   <p>A rite for reflection and entertainment. Not a medical device and not a prediction of the future.</p>
-  <p class="langs">Dream book in: <a href="/dreams/">English</a> · <a href="/es/dreams/">Español</a> · <a href="/pt/dreams/">Português</a> · <a href="/de/dreams/">Deutsch</a> · <a href="/fr/dreams/">Français</a> · <a href="/it/dreams/">Italiano</a> · <a href="/tr/dreams/">Türkçe</a> · <a href="/ja/dreams/">日本語</a> · <a href="/ru/dreams/">Русский</a></p>
+  <p class="langs">This page in: <b>English</b> · <a href="/ru/" hreflang="ru" lang="ru">Русский</a> · <a href="/es/" hreflang="es" lang="es">Español</a> · <a href="/pt/" hreflang="pt" lang="pt">Português</a> · <a href="/de/" hreflang="de" lang="de">Deutsch</a> · <a href="/fr/" hreflang="fr" lang="fr">Français</a> · <a href="/it/" hreflang="it" lang="it">Italiano</a> · <a href="/tr/" hreflang="tr" lang="tr">Türkçe</a> · <a href="/ja/" hreflang="ja" lang="ja">日本語</a></p>
   <p>© 2026 KULIK TRADE CORP.</p>
 </footer>
 
-<script src="/assets/home.js?v=10" defer></script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="/assets/home-3d.js?v=10"></script>
+<script id="i18n" type="application/json">{"lang": "en", "prefix": "", "v": "14", "popular": [["snakes", "Snakes"], ["teeth", "Teeth"], ["water", "Water"], ["wedding", "wedding"], ["flying", "Flying"], ["dog", "dog"]], "notes": {"udjat": "Everyone wore it, from children to pharaohs, against illness and the evil eye. It was put on children and taken on journeys, and painted on the bows of boats so that the boat could \"see\" its way.", "scarab": "Almost every Egyptian wore a scarab, for renewal and good luck. It was worn in rings and on a cord, and used to seal letters and jars.", "ankh": "The ankh was woven into jewellery and carved on objects so that life would not run dry. For the Egyptians it was the sign of the breath the gods give: on temple walls the gods hold the ankh to the pharaoh's face."}, "s": {"s_near": "Nothing for “{q}”. Did you mean:", "s_none": "Nothing for “{q}” yet. Dreams people often look up:", "s_all": "All 789 dreams from A to Z →", "s_pap": "The pharaohs’ dream book has a dream about this. You will find it in the Place of Truth app, coming soon to Google Play.", "s_open": "Open"}}</script>
+<script src="/assets/home.js?v=14" defer></script>
+<script src="/assets/dream-search.js?v=14" defer></script>
+<script type="importmap">{"imports":{"three":"/assets/vendor/three/build/three.module.js","three/addons/":"/assets/vendor/three/examples/jsm/"}}</script>
+<script type="module" src="/assets/home-3d.js?v=14"></script>
 </body>
 </html>

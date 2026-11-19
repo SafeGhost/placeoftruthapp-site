@@ -10,11 +10,8 @@ const FILES = {
   scarab: "/assets/3d/amulet_07_scarab.glb",
   ankh: "/assets/3d/amulet_02_ankh.glb",
 };
-const NOTES = {
-  udjat: "Everyone wore it, from children to pharaohs, against illness and the evil eye. It was painted on the bows of boats so that the boat could “see” its way.",
-  scarab: "Almost every Egyptian wore a scarab, for renewal and good luck. Like the god Khepri rolling out the sun, it was believed to help one begin again.",
-  ankh: "The sign of the breath the gods give. It was worn in necklaces and carved on mirror handles and water jars, so that life would not run dry.",
-};
+let NOTES = {};
+try { NOTES = JSON.parse(document.getElementById("i18n").textContent).notes || {}; } catch (e) {}
 
 function getModel(name) {
   if (!cache[name]) {
@@ -103,8 +100,8 @@ function hero() {
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
     mobile = w < 760;
-    pivot.position.set(mobile ? 0.15 : 2.2, mobile ? 1.38 : 0.35, 0);
-    pivot.scale.setScalar(mobile ? 0.44 : 0.8);
+    pivot.position.set(mobile ? 0.15 : 2.6, mobile ? 1.38 : 0.35, 0);
+    pivot.scale.setScalar(mobile ? 0.44 : 0.74);
   }
   layout();
   addEventListener("resize", layout);

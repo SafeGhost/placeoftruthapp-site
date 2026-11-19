@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<link rel="canonical" href="https://placeoftruthapp.com{{prefix}}/">
+{{hreflang}}
+<meta name="theme-color" content="#0d0a07">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://placeoftruthapp.com{{prefix}}/">
+<meta property="og:title" content="{{og_title}}">
+<meta property="og:description" content="{{og_desc}}">
+<meta property="og:image" content="https://placeoftruthapp.com/assets/pot/nile-felucca-wide.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icon.png">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=1">
+<link rel="preload" as="image" href="/assets/pot/nile-felucca-wide.jpg" media="(min-width:701px)">
+<link rel="preload" as="image" href="/assets/pot/nile-felucca-tall.jpg" media="(max-width:700px)">
+<link rel="stylesheet" href="/assets/home.css?v=10">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Place of Truth","operatingSystem":"Android","applicationCategory":"LifestyleApplication","description":"{{og_desc}}","url":"https://placeoftruthapp.com{{prefix}}/","inLanguage":"{{lang}}","image":"https://placeoftruthapp.com/assets/icon.png","publisher":{"@type":"Organization","name":"KULIK TRADE CORP."}}</script>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="{{prefix}}/"><img src="/assets/icon.png" alt="" width="34" height="34">Place of Truth</a>
+  <nav aria-label="Main">
+    <a href="#rites">{{nav_inside}}</a>
+    <a href="#amulets">{{nav_amulets}}</a>
+    <a class="keep" href="{{prefix}}/dreams/">{{nav_dreams}}</a>
+    {{langmenu}}
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <canvas class="hero-3d" id="hero3d" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-in">
+    <p class="eyebrow reveal">{{eyebrow}}</p>
+    <h1 class="reveal d1">Place of Truth</h1>
+    <p class="lead reveal d2">{{lead}}</p>
+    <div class="actions reveal d3">
+      <span class="play" aria-label="{{soon_aria}}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 2.6v18.8c0 .5.5.8.9.6l16-9.4c.4-.2.4-.9 0-1.1L4.9 2c-.4-.3-.9 0-.9.6z"/></svg><span><small>{{soon_small}}</small>Google Play</span></span>
+      <a class="btn" href="#dream">{{cta_dream}}</a>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#legend" aria-label="{{scroll}}"><span></span></a>
+</section>
+
+<main id="main">
+
+<section class="legend" id="legend">
+  <div class="legend-bg" data-parallax aria-hidden="true"></div>
+  <div class="legend-in">
+    <p class="eyebrow reveal">{{legend_eyebrow}}</p>
+    <blockquote class="reveal d1">{{legend_quote}}</blockquote>
+    <p class="reveal d2">{{legend_line}}</p>
+  </div>
+</section>
+
+<section class="rites" id="rites">
+  <header class="sec-head">
+    <p class="eyebrow reveal">{{rites_eyebrow}}</p>
+    <h2 class="reveal d1">{{rites_h}}</h2>
+  </header>
+  <div class="rites-grid">
+    <div class="phone-wrap" aria-hidden="true">
+      <div class="phone" id="phone">
+        <img src="/assets/pot/shots/{{shots}}/1.jpg" alt="" class="on" width="540" height="960">
+        <img src="/assets/pot/shots/{{shots}}/3.jpg" alt="" loading="lazy" width="540" height="960">
+        <img src="/assets/pot/shots/{{shots}}/4.jpg" alt="" loading="lazy" width="540" height="960">
+        <img src="/assets/pot/shots/{{shots}}/5.jpg" alt="" loading="lazy" width="540" height="960">
+        <img src="/assets/pot/shots/{{shots}}/6.jpg" alt="" loading="lazy" width="540" height="960">
+      </div>
+      <div class="phone-glow"></div>
+    </div>
+    <ol class="steps">
+      <li class="step" data-i="0">
+        <img class="step-shot" src="/assets/pot/shots/{{shots}}/1.jpg" alt="{{r1_alt}}" loading="lazy" width="540" height="960">
+        <span class="num">I</span>
+        <h3>{{r1_h}}</h3>
+        <p>{{r1_p}}</p>
+      </li>
+      <li class="step" data-i="1">
+        <img class="step-shot" src="/assets/pot/shots/{{shots}}/3.jpg" alt="{{r2_alt}}" loading="lazy" width="540" height="960">
+        <span class="num">II</span>
+        <h3>{{r2_h}}</h3>
+        <p>{{r2_p}}</p>
+      </li>
+      <li class="step" data-i="2">
+        <img class="step-shot" src="/assets/pot/shots/{{shots}}/4.jpg" alt="{{r3_alt}}" loading="lazy" width="540" height="960">
+        <span class="num">III</span>
+        <h3>{{r3_h}}</h3>
+        <p>{{r3_p}}</p>
+      </li>
+      <li class="step" data-i="3">
+        <img class="step-shot" src="/assets/pot/shots/{{shots}}/5.jpg" alt="{{r4_alt}}" loading="lazy" width="540" height="960">
+        <span class="num">IV</span>
+        <h3>{{r4_h}}</h3>
+        <p>{{r4_p}}</p>
+      </li>
+      <li class="step" data-i="4">
+        <img class="step-shot" src="/assets/pot/shots/{{shots}}/6.jpg" alt="{{r5_alt}}" loading="lazy" width="540" height="960">
+        <span class="num">V</span>
+        <h3>{{r5_h}}</h3>
+        <p>{{r5_p}}</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="amulets" id="amulets">
+  <div class="amulets-in">
+    <div class="amulet-stage">
+      <canvas id="amulet3d" aria-label="{{am_canvas}}"></canvas>
+      <p class="hint">{{am_hint}}</p>
+    </div>
+    <div class="amulet-text">
+      <p class="eyebrow reveal">{{am_eyebrow}}</p>
+      <h2 class="reveal d1">{{am_h}}</h2>
+      <p class="reveal d2">{{am_p}}</p>
+      <div class="tabs reveal d3" role="tablist" aria-label="{{nav_amulets}}">
+        <button role="tab" aria-selected="true" data-model="udjat">{{am_udjat}}</button>
+        <button role="tab" aria-selected="false" data-model="scarab">{{am_scarab}}</button>
+        <button role="tab" aria-selected="false" data-model="ankh">{{am_ankh}}</button>
+      </div>
+      <p class="amulet-note" id="amuletNote">{{note_udjat}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="dream" id="dream">
+  <div class="dream-bg" data-parallax aria-hidden="true"></div>
+  <div class="dream-in">
+    <p class="eyebrow reveal">{{dr_eyebrow}}</p>
+    <h2 class="reveal d1">{{dr_h}}</h2>
+    <p class="reveal d2">{{dr_p}}</p>
+    <form class="search reveal d3" action="{{prefix}}/dreams/" role="search" autocomplete="off">
+      <label for="q" class="sr">{{dr_label}}</label>
+      <input id="q" name="q" type="search" placeholder="{{dr_placeholder}}" aria-autocomplete="list" aria-controls="results">
+      <ul id="results" role="listbox"></ul>
+    </form>
+    <p class="chips reveal d3">{{chips}}</p>
+    <a class="more" href="{{prefix}}/dreams/">{{dr_more}}</a>
+  </div>
+</section>
+
+<section class="secrets">
+  <header class="sec-head">
+    <p class="eyebrow reveal">{{sec_eyebrow}}</p>
+    <h2 class="reveal d1">{{sec_h}}</h2>
+  </header>
+  <div class="facts">
+    <div class="fact reveal"><b>{{f1_b}}</b><p>{{f1_p}}</p></div>
+    <div class="fact reveal d1"><b>{{f2_b}}</b><p>{{f2_p}}</p></div>
+    <div class="fact reveal d2"><b>{{f3_b}}</b><p>English, Español, Português, Deutsch, Français, Italiano, Türkçe, 日本語, Русский.</p></div>
+  </div>
+</section>
+
+<section class="price">
+  <header class="sec-head">
+    <p class="eyebrow reveal">{{pr_eyebrow}}</p>
+    <h2 class="reveal d1">{{pr_h}}</h2>
+  </header>
+  <div class="price-grid">
+    <div class="tier reveal">
+      <h3>{{free_h}}</h3>
+      <p>{{free_p}}</p>
+    </div>
+    <div class="tier gold reveal d1">
+      <h3>{{full_h}}</h3>
+      <p>{{full_p}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="final-bg" data-parallax aria-hidden="true"></div>
+  <div class="final-in">
+    <img class="final-icon reveal" src="/assets/icon.png" alt="{{fin_alt}}" width="96" height="96" loading="lazy">
+    <h2 class="reveal d1">{{fin_h}}</h2>
+    <p class="reveal d2">{{fin_p}}</p>
+    <span class="play reveal d3"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 2.6v18.8c0 .5.5.8.9.6l16-9.4c.4-.2.4-.9 0-1.1L4.9 2c-.4-.3-.9 0-.9.6z"/></svg><span><small>{{soon_small}}</small>Google Play</span></span>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <nav aria-label="Footer"><a href="{{prefix}}/dreams/">{{foot_dreams}}</a><a href="/support.html">{{foot_support}}</a><a href="/privacy.html">{{foot_privacy}}</a></nav>
+  <p>{{foot_note}}</p>
+  <p class="langs">{{foot_langs}} {{langlinks}}</p>
+  <p>© 2026 KULIK TRADE CORP.</p>
+</footer>
+
+<script id="i18n" type="application/json">{{i18n}}</script>
+<script src="/assets/home.js?v=10" defer></script>
+<script src="/assets/dream-search.js?v=10" defer></script>
+<script type="importmap">{"imports":{"three":"/assets/vendor/three/build/three.module.js","three/addons/":"/assets/vendor/three/examples/jsm/"}}</script>
+<script type="module" src="/assets/home-3d.js?v=10"></script>
+</body>
+</html>
