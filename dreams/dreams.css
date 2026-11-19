@@ -1,0 +1,85 @@
+/* Сонник Place of Truth: ночь, золото, папирус — как в приложении */
+:root {
+  --bg: #0d0a07;
+  --bg2: #17110b;
+  --text: #efe3cc;
+  --muted: #b8a684;
+  --gold: #d9b15c;
+  --gold2: #f3d58a;
+  --papyrus: #f1e3c2;
+  --ink: #3a2a17;
+  --line: #3b2d1c;
+  --good: #9fd29a;
+  --bad: #f0a07a;
+  --lapis: #22356e;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 50% -10%, #2a1d10 0%, var(--bg) 55%) fixed;
+  color: var(--text);
+  font: 19px/1.65 "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  -webkit-text-size-adjust: 100%;
+}
+:lang(ja) body, body:lang(ja) { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 17px; }
+a { color: var(--gold2); }
+h1, h2, .brand { font-family: "Cormorant SC", "Cormorant Garamond", Georgia, serif; letter-spacing: .02em; }
+
+.top { position: absolute; top: 0; left: 0; right: 0; z-index: 3; padding: 16px 20px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--gold2); text-decoration: none; font-weight: 600; font-size: 19px; text-shadow: 0 1px 8px #000; }
+.brand img { border-radius: 9px; box-shadow: 0 0 0 1px rgba(217,177,92,.5); }
+
+.hero { position: relative; min-height: 62vh; display: flex; align-items: flex-end; background-size: cover; background-position: center 40%; }
+.hero.small { min-height: 34vh; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,10,7,.25) 0%, rgba(13,10,7,.15) 40%, var(--bg) 100%); }
+.hero-in { position: relative; z-index: 2; width: 100%; max-width: 780px; margin: 0 auto; padding: 0 20px 18px; }
+.hero h1 { font-size: clamp(34px, 6vw, 54px); line-height: 1.08; margin: 0 0 10px; color: var(--gold2); text-shadow: 0 2px 18px rgba(0,0,0,.8); }
+.hero .lead { font-size: 20px; color: var(--text); text-shadow: 0 1px 10px #000; margin: 0; max-width: 620px; }
+.crumbs { font-size: 16px; color: var(--muted); margin-bottom: 6px; text-shadow: 0 1px 8px #000; }
+.crumbs a { color: var(--muted); }
+
+main { max-width: 780px; margin: 0 auto; padding: 8px 20px 48px; }
+h2 { font-size: 25px; margin: 34px 0 10px; color: var(--gold); font-weight: 600; }
+h2::before { content: "𓂀  "; font-size: 18px; color: var(--gold); opacity: .7; }
+
+/* свиток с толкованием, как в приложении */
+.scroll { position: relative; margin: 6px 0 10px; padding: 26px 28px 22px; background: linear-gradient(180deg, #f5e9cd, #e9d6ad); color: var(--ink); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.55), inset 0 0 40px rgba(120,80,30,.25); }
+.scroll::before, .scroll::after { content: ""; position: absolute; left: -10px; right: -10px; height: 14px; border-radius: 7px; background: linear-gradient(180deg, #8a6430, #c99a52 45%, #6b4a20); box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+.scroll::before { top: -7px; } .scroll::after { bottom: -7px; }
+.scroll .dream { font-style: italic; color: #6a5332; font-size: 21px; margin: 0 0 10px; }
+.scroll .omen { font-size: 22px; line-height: 1.5; margin: 0 0 14px; }
+.sign { display: inline-block; padding: 3px 14px; border-radius: 999px; font-size: 16px; font-weight: 600; letter-spacing: .03em; }
+.scroll .sign.good { background: #2f5d34; color: #e8f5e4; }
+.scroll .sign.bad { background: #8a3f1f; color: #fbe9de; }
+
+.vars { padding-left: 0; list-style: none; }
+.vars li { margin: 10px 0; padding: 12px 16px; background: var(--bg2); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 8px; }
+.rel { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; list-style: none; }
+.rel a { display: inline-block; padding: 7px 15px; background: var(--bg2); border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--text); font-size: 17px; }
+.rel a:hover { border-color: var(--gold); color: var(--gold2); }
+
+#q { width: 100%; font: inherit; font-size: 19px; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg2); color: var(--text); margin: 6px 0 4px; outline: none; }
+#q:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(217,177,92,.2); }
+.cat h2 { margin-top: 30px; }
+.list { columns: 2 220px; column-gap: 28px; padding: 0; list-style: none; margin: 0; }
+.list li { break-inside: avoid; padding: 3px 0; border-bottom: 1px dashed rgba(217,177,92,.12); }
+.list a { text-decoration: none; color: var(--text); }
+.list a:hover { color: var(--gold2); }
+
+/* приглашение в приложение */
+.cta { display: grid; grid-template-columns: 150px 1fr; gap: 22px; align-items: center; margin: 46px 0 18px; padding: 22px; background: linear-gradient(135deg, #1d150c, #120d08); border: 1px solid #5a4425; border-radius: 18px; box-shadow: 0 0 40px rgba(217,177,92,.08); }
+.cta .phone { width: 150px; border-radius: 16px; border: 2px solid #6b5129; box-shadow: 0 12px 30px rgba(0,0,0,.6); display: block; }
+.cta h3 { margin: 0 0 6px; font-family: "Cormorant SC", Georgia, serif; color: var(--gold2); font-size: 26px; }
+.cta p { margin: 0 0 8px; }
+.cta .soon { font-size: 16px; color: var(--muted); }
+.btn { display: inline-block; margin-top: 6px; padding: 10px 20px; border-radius: 999px; background: linear-gradient(180deg, var(--gold2), var(--gold)); color: #2a1c08; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-size: 15px; font-weight: 700; }
+.src { font-size: 15px; color: var(--muted); }
+footer { max-width: 780px; margin: 0 auto; padding: 18px 20px 44px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); }
+footer a { color: var(--muted); margin: 0 2px; }
+footer b { color: var(--gold); }
+@media (max-width: 560px) {
+  .cta { grid-template-columns: 96px 1fr; gap: 14px; padding: 16px; }
+  .cta .phone { width: 96px; }
+  .scroll { padding: 22px 18px 18px; }
+}
