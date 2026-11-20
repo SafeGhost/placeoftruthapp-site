@@ -12,7 +12,7 @@ APPSTR = os.path.expanduser('~/develop/oracle-apps/android-mac/app-src/app/src/m
 LANGS = ['en', 'ru', 'es', 'pt', 'de', 'fr', 'it', 'tr', 'ja']
 HREFLANG = {'pt': 'pt'}
 POPULAR = ['snakes', 'teeth', 'water', 'wedding', 'flying', 'dog']
-VER = '14'
+VER = '25'
 
 RU_AM = {
     'udjat': ("Уджат", "Его носили все — от детей до фараонов — против болезней и сглаза.",

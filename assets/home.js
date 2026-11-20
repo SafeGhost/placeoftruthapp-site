@@ -31,19 +31,55 @@
     para();
   }
 
-  // pinned phone: switch screen to the active step
+  // pinned phone: the step nearest the middle of the screen is lit and its screen shown.
+  // Measured on every scroll frame, so fast scrolls, scrolling back and any window height work.
   var phone = document.getElementById("phone");
   var shots = phone ? phone.querySelectorAll("img") : [];
-  var steps = document.querySelectorAll(".step");
-  var sio = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var i = +e.target.getAttribute("data-i");
-      steps.forEach(function (s) { s.classList.toggle("active", s === e.target); });
-      for (var k = 0; k < shots.length; k++) shots[k].classList.toggle("on", k === i);
+  var steps = [].slice.call(document.querySelectorAll(".step"));
+  var cur = -1;
+  function pickStep() {
+    var mid = window.innerHeight / 2, best = -1, bestD = 1e9;
+    steps.forEach(function (s, i) {
+      var r = s.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var c = s.querySelector(".step-card") || s, cr = c.getBoundingClientRect();
+      var d = Math.abs((cr.top + cr.bottom) / 2 - mid);
+      if (d < bestD) { bestD = d; best = i; }
     });
-  }, { rootMargin: "-45% 0px -45% 0px" });
-  steps.forEach(function (s) { sio.observe(s); });
-  if (steps[0]) steps[0].classList.add("active");
+    if (best < 0 || best === cur) return;
+    cur = best;
+    steps.forEach(function (s, i) { s.classList.toggle("active", i === best); });
+    for (var k = 0; k < shots.length; k++) shots[k].classList.toggle("on", k === +steps[best].getAttribute("data-i"));
+  }
+  if (steps[0]) { steps[0].classList.add("active"); cur = 0; }
 
+  // fallback for the fade-in: anything already on screen is shown, even if the observer missed it
+  function revealVisible() {
+    var h = window.innerHeight;
+    document.querySelectorAll(".reveal:not(.in)").forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < h && r.bottom > 0) el.classList.add("in");
+    });
+  }
+  var queued = false;
+  function onFrame() { queued = false; revealVisible(); pickStep(); }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(onFrame); } }
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", queue);
+  window.addEventListener("load", queue);
+  window.addEventListener("pageshow", queue);
+  queue();
+})();
+
+// store badges: until the app is out, a tap tells when it comes
+(function () {
+  var dlg = document.getElementById("storeMsg");
+  if (!dlg) return;
+  document.querySelectorAll("button.store[data-msg]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      dlg.querySelector("p").textContent = b.getAttribute("data-msg");
+      if (dlg.showModal) dlg.showModal(); else alert(b.getAttribute("data-msg"));
+    });
+  });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
 })();
